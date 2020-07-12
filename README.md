@@ -49,7 +49,7 @@ Make is a utility that simplifies the building of code. It essentially just runs
 6. Walk through the first loop using the `step` button
 7. When you reach the second break point, open the debugging console at the bottom of the screen, where the terminal usually appears.
 8. Set the value of your loop-variable to 1 and hit continue to allow the program to almost finish.
-9.  Click on the terminal tab to see the output of your program. It should match this:
+9. Click on the terminal tab to see the output of your program. It should match this:
 
     ```text
     Part 1:
@@ -92,5 +92,5 @@ For the purposes of this lab, you will be submitting your work through this repo
 
 1. Take screenshots of your programs working as expected, and put in the `submission/screenshots` folder.
 2. Save all of your files.
-3. Make a file with your full name in the root of the repository (top-level, not in any folder) using `touch First_Last`, with First_Last matching your name in canvas.
+3. Rename `Atilla_The_Duck (Replace with your name).name` to your name.
 4. Use the info above to push your code to your repository.
