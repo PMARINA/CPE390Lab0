@@ -46,7 +46,7 @@ Make is a utility that simplifies the building of code. It essentially just runs
 3. Set the expression to `loopvariable == 5`, replacing loop variable with i or j or whatever the variable you used.
 4. Finally, set a breakpoint on the final line of the main method (prewritten).
 5. Use the run button on the left to compile and enter debugging mode. If the compiler fails to compile, you need to fix your code.
-6. Walk through the first loop using the `step` button
+6. Walk through the first loop using the `step` button. Note how the highlighted line is about to be run when you click on an action, but has not been run yet.
 7. When you reach the second break point, open the debugging console at the bottom of the screen, where the terminal usually appears.
 8. Set the value of your loop-variable to 1 and hit continue to allow the program to almost finish.
 9. Click on the terminal tab to see the output of your program. It should match this:
@@ -94,3 +94,28 @@ For the purposes of this lab, you will be submitting your work through this repo
 2. Save all of your files.
 3. Rename `Atilla_The_Duck (Replace with your name).name` to your name.
 4. Use the info above to push your code to your repository.
+
+## How to do everything from the terminal
+
+These instructions are for if you cannot debug in VS Code. They will be generic, assuming you have a file `a.cpp`, which you want to debug... Note that breakpoints set in VS Code are not relevant to things in GDB. Note that GDB relies on a library known as [curses](https://en.wikipedia.org/wiki/Curses_(programming_library)), which is prone to issues. If you ever notice that your screen looks strange, just hit `ctrl`+`L` to force the library to redraw your entire screen.
+
+1. Compile a.cpp:
+   1. If you have a `Makefile`, you may use `make` (or `make <target>`) to build the file.
+   2. `g++ -g3 a.cpp`: `-g3` tells the compiler to include as much debugging information as possible. 
+2. Start the debugger: 
+   1. `gdb a.out` (may be a.exe on some systems). This will open the GNU Debugger as a sort of terminal. 
+3. Set the layout of the debugger:
+   1. `layout src`: the source code layout. Usually, if you are not working with assembly, this is the only layout you need to use.
+   2. `layout reg`: this shows only the registers, usually combined with the `asm` layout, as the registers are largely irrelevant when programming pure C++.
+   3. `layout asm`: this shows the assembly instructions you are running.
+4. Set your breakpoints. A few different ways to set breakpoints:
+   1. `b main`: sets a breakpoint at the entry point to the main function
+   2. `b a.cpp:123`: sets a breakpoint in a.cpp at line 123. Note that if you edit the file while you debug, the line numbers that GDB will not update. This is also applicable to VS Code.
+   3. `b a.cpp:123 if var == value`: conditional breakpoint that only breaks if the var reaches the value. Note that other conditions can be specified.
+5. Run your program:
+   1. `r`: runs your program. If you are already running your program, you can use `r` to restart.
+   2. `c`: continues if you are paused.
+   3. `s`: step until you hit the next line in source code.
+   4. `si`: step instruction
+   5. `n`: step, but won't enter lower level stuff (ie loops, function calls, etc)
+   6. `q`: quit.
